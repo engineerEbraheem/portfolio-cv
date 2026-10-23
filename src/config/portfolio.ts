@@ -206,15 +206,34 @@ export const portfolioConfig: PortfolioData = {
 
   projects: [
     {
+      id: 'portfolio-cv-platform',
+      title: 'Production-Grade Architectural Developer Portfolio',
+      subtitle: 'React 19, TanStack Router, Zustand & Radix UI',
+      summary:
+        'Production-grade developer portfolio engineered with Vite, React 19, and TypeScript. Implements type-safe file-based routing via TanStack Router, centralized state management with Zustand, headless Radix UI primitives with Tailwind CSS, and zero-runtime bidirectional localization (LTR/RTL) with Lingui.',
+      description:
+        'Engineered a scalable, production-grade personal developer portfolio utilizing React 19, TypeScript, TanStack Router with file-based routing, Zustand state management, Radix UI headless primitives, and Tailwind CSS. Features clean anti-slop design aesthetics, full bidirectional localization (LTR/RTL) using compiled Lingui catalogs, and self-hosted local typography.',
+      category: 'Flagship Architecture',
+      technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS'],
+      githubUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
+      demoUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
+      highlights: [
+        'Strict end-to-end type safety using TanStack Router with automated file-based route tree generation.',
+        'Centralized state management with persistent theme switching and bidirectional language synchronization via Zustand.',
+        'Accessible, high-performance UI using headless Radix UI primitives and Tailwind CSS with 100% self-hosted local fonts.',
+      ],
+      featured: true,
+    },
+    {
       id: 'restaurant-orders-redux',
-      title: 'Restaurant Orders Page with Shopping Cart, Search & Filter',
+      title: 'Restaurant Orders Page with Shopping Cart & Filter',
       subtitle: 'React.js & Redux Toolkit Architecture',
       summary:
-        'Interactive restaurant ordering and menu exploration portal with real-time cart calculations, responsive filtering, and search capabilities.',
+        'Practical milestone application built during early frontend training to master predictable global state orchestration with Redux Toolkit, real-time cart computations, and multi-criteria client-side filtering.',
       description:
         'Engineered an intuitive restaurant menu and order processing web app using React.js and Redux Toolkit. Features immediate item filtering by categories, real-time search indexing, dynamic cart calculation, and responsive layout for mobile and desktop order placement.',
-      category: 'React & Redux',
-      technologies: ['React.js', 'Redux Toolkit', 'JavaScript', 'CSS3', 'Responsive UI'],
+      category: 'Foundational Milestone',
+      technologies: ['React.js', 'Redux Toolkit', 'JavaScript', 'CSS3'],
       githubUrl: 'https://github.com/engineerEbraheem/menu_ProjectRedux',
       demoUrl: 'https://engineerebraheem.github.io/menu_ProjectRedux/',
       highlights: [
@@ -229,36 +248,17 @@ export const portfolioConfig: PortfolioData = {
       title: 'Movie Display Page with Search Capability',
       subtitle: 'React.js & Redux Toolkit Catalog Engine',
       summary:
-        'Feature-rich movie discovery application with instant search query handling, rating badges, dynamic modal details, and Redux state synchronization.',
+        'Early foundational project focused on asynchronous REST API integration, query synchronization, and Redux state flows for dynamic search and modal views.',
       description:
         'Architected a movie streaming catalog application showcasing popular releases with real-time search queries, pagination, detail modals, and seamless client-side state handling using Redux Toolkit.',
-      category: 'React & Redux',
-      technologies: ['React.js', 'Redux Toolkit', 'REST API', 'JavaScript', 'CSS3'],
+      category: 'Foundational Milestone',
+      technologies: ['React.js', 'Redux Toolkit', 'REST API', 'JavaScript'],
       githubUrl: 'https://github.com/engineerEbraheem/movies_ProjectRedux',
       demoUrl: 'https://engineerebraheem.github.io/movies_ProjectRedux/',
       highlights: [
         'Real-time search debounce with dynamic query dispatch to Redux store.',
         'Responsive media grid layout with rating indicators and detail inspection.',
         'Modular component architecture with reusable cards and error boundaries.',
-      ],
-      featured: true,
-    },
-    {
-      id: 'portfolio-cv-platform',
-      title: 'Production-Grade Architectural Developer Portfolio',
-      subtitle: 'React 19, TanStack Router, Zustand & PrimeReact',
-      summary:
-        'Modern, enterprise-ready developer portfolio platform featuring file-based routing, Zustand state management, PrimeReact primitives, and bidirectional LTR/RTL support.',
-      description:
-        'Built with Vite, React 19, TypeScript, TanStack Router, Tailwind CSS, PrimeReact UI suite, and Lingui internationalization with offline local fonts.',
-      category: 'Enterprise Frontend',
-      technologies: ['React 19', 'TypeScript', 'TanStack Router', 'PrimeReact', 'Tailwind CSS', 'Zustand', 'Lingui'],
-      githubUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
-      demoUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
-      highlights: [
-        'Strict type-safety with TanStack Router file-based route definitions.',
-        'Centralized UI preferences, theme switching, and language direction with Zustand.',
-        'Accessible, high-performance UI using PrimeReact components and Tailwind CSS.',
       ],
       featured: true,
     },
