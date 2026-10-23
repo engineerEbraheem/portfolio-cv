@@ -235,7 +235,7 @@ export const portfolioConfig: PortfolioData = {
       category: 'Foundational Milestone',
       technologies: ['React.js', 'Redux Toolkit', 'JavaScript', 'CSS3'],
       githubUrl: 'https://github.com/engineerEbraheem/menu_ProjectRedux',
-      demoUrl: 'https://engineerebraheem.github.io/menu_ProjectRedux/',
+      demoUrl: 'https://menu-project-redux.vercel.app/',
       highlights: [
         'Centralized state management powered by Redux Toolkit for seamless cart mutations and instant reactive UI updates.',
         'High-performance category filters and search indexing for immediate item retrieval.',
@@ -254,7 +254,7 @@ export const portfolioConfig: PortfolioData = {
       category: 'Foundational Milestone',
       technologies: ['React.js', 'Redux Toolkit', 'REST API', 'JavaScript'],
       githubUrl: 'https://github.com/engineerEbraheem/movies_ProjectRedux',
-      demoUrl: 'https://engineerebraheem.github.io/movies_ProjectRedux/',
+      demoUrl: 'https://movies-project-redux.vercel.app/',
       highlights: [
         'Real-time search debounce with dynamic query dispatch to Redux store.',
         'Responsive media grid layout with rating indicators and detail inspection.',
