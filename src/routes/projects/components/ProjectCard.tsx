@@ -1,73 +1,93 @@
 import React from 'react'
 import { Link } from '@tanstack/react-router'
-import { Card } from 'primereact/card'
 import { Icon } from '@iconify/react'
-import { ProjectItem } from '@/config/portfolio.config'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/Card'
+import { Badge } from '@/components/ui/Badge'
+import { Button } from '@/components/ui/Button'
+import { ProjectItem } from '@/config/portfolio'
+import { useProjectStore } from '@/store/useProjectStore'
 
 export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => {
+  const openProjectModal = useProjectStore((s) => s.openProjectModal)
+
   return (
-    <Card
-      title={project.title}
-      subTitle={
-        <div className="flex items-center justify-between text-xs font-mono text-indigo-600 dark:text-indigo-400 mt-1">
-          <span>{project.category}</span>
-          {project.metrics && <span className="text-emerald-500">{project.metrics}</span>}
-        </div>
-      }
-      className="glass-card border border-slate-200/80 dark:border-slate-800/80 rounded-xl flex flex-col justify-between"
-    >
-      <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-        {project.description}
-      </p>
-
-      <div className="space-y-4">
-        <div className="flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-          <Link
-            to="/projects/$projectId"
-            params={{ projectId: project.id }}
-            className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
-          >
-            <span>Deep Dive Specification</span>
-            <Icon icon="lucide:arrow-right" className="w-3.5 h-3.5" />
-          </Link>
-
-          <div className="flex items-center gap-2">
-            {project.repoUrl && (
+    <Card className="flex flex-col justify-between hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors h-full">
+      <CardHeader className="space-y-2 p-5">
+        <div className="flex items-center justify-between gap-2">
+          <Badge variant="outline" className="text-[11px] font-normal">
+            {project.category}
+          </Badge>
+          <div className="flex items-center gap-1.5 text-zinc-400">
+            {project.demoUrl && (
               <a
-                href={project.repoUrl}
+                href={project.demoUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
-                aria-label="Repository"
-              >
-                <Icon icon="lucide:github" className="w-4 h-4" />
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+                className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors p-1"
                 aria-label="Live Demo"
               >
-                <Icon icon="lucide:external-link" className="w-4 h-4" />
+                <Icon icon="lucide:external-link" className="w-3.5 h-3.5" />
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors p-1"
+                aria-label="Source code"
+              >
+                <Icon icon="lucide:github" className="w-3.5 h-3.5" />
               </a>
             )}
           </div>
         </div>
-      </div>
+
+        <CardTitle className="text-base font-semibold leading-snug">
+          <Link
+            to="/projects/$projectId"
+            params={{ projectId: project.id }}
+            className="hover:underline"
+          >
+            {project.title}
+          </Link>
+        </CardTitle>
+
+        <CardDescription className="line-clamp-3 text-xs leading-relaxed">
+          {project.summary}
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="p-5 pt-0 space-y-3">
+        <div className="flex flex-wrap gap-1.5">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-mono text-[11px]"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </CardContent>
+
+      <CardFooter className="p-5 pt-0 flex items-center justify-between border-t border-zinc-100 dark:border-zinc-800/80 pt-3">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-xs px-2 h-7"
+          onClick={() => openProjectModal(project)}
+        >
+          <span>Preview Details</span>
+        </Button>
+
+        <Button asChild variant="outline" size="sm" className="text-xs h-7">
+          <Link to="/projects/$projectId" params={{ projectId: project.id }}>
+            <span>Specification</span>
+            <Icon icon="lucide:arrow-right" className="w-3 h-3" />
+          </Link>
+        </Button>
+      </CardFooter>
     </Card>
   )
 }

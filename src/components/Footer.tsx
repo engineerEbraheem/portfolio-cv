@@ -1,33 +1,46 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
-import { portfolioConfig } from '@/config/portfolio.config'
+import { portfolioConfig } from '@/config/portfolio'
 
 export const Footer: React.FC = () => {
+  const { personal } = portfolioConfig
+
   return (
-    <footer className="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-950/50 py-10 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col items-center md:items-start gap-1">
-          <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
-            {portfolioConfig.personal.name} &bull; {portfolioConfig.personal.title}
+    <footer className="border-t border-zinc-200/70 dark:border-zinc-800/70 py-10 transition-colors">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div className="flex flex-col items-center sm:items-start gap-1 text-center sm:text-left">
+          <p className="font-medium text-zinc-900 dark:text-zinc-100">
+            {personal.name} &bull; {personal.title}
           </p>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
-            Engineered with React 19, TypeScript, TanStack Router, Tailwind CSS & PrimeReact.
+          <p className="text-zinc-500 dark:text-zinc-400">
+            {personal.location} &bull; {personal.email} &bull; {personal.phone}
           </p>
         </div>
 
-        <div className="flex items-center gap-4">
-          {portfolioConfig.personal.socials.map((social) => (
-            <a
-              key={social.platform}
-              href={social.url}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label={social.platform}
-            >
-              <Icon icon={social.icon} className="w-5 h-5" />
-            </a>
-          ))}
+        <div className="flex items-center gap-3">
+          <a
+            href={personal.github}
+            target="_blank"
+            rel="noreferrer"
+            className="p-1.5 rounded-md text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            aria-label="GitHub Profile"
+          >
+            <Icon icon="lucide:github" className="w-4 h-4" />
+          </a>
+          <a
+            href={`mailto:${personal.email}`}
+            className="p-1.5 rounded-md text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            aria-label="Email"
+          >
+            <Icon icon="lucide:mail" className="w-4 h-4" />
+          </a>
+          <a
+            href={`tel:${personal.phone}`}
+            className="p-1.5 rounded-md text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            aria-label="Phone"
+          >
+            <Icon icon="lucide:phone" className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </footer>

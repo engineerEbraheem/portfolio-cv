@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { PrimeReactProvider } from 'primereact/api'
 import { I18nProvider } from '@lingui/react'
 import { routeTree } from './routeTree.gen'
 import { ThemeProvider } from '@/hooks/useTheme'
@@ -30,11 +29,9 @@ if (rootElement && !rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <I18nProvider i18n={i18nInstance}>
-        <PrimeReactProvider value={{ ripple: true }}>
-          <ThemeProvider>
-            <RouterProvider router={router} />
-          </ThemeProvider>
-        </PrimeReactProvider>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </I18nProvider>
     </StrictMode>
   )

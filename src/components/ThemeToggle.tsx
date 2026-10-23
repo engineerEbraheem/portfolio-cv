@@ -12,11 +12,11 @@ export const ThemeToggle: React.FC = () => {
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none"
     >
       <Icon
         icon={isDark ? 'lucide:sun' : 'lucide:moon'}
-        className="w-5 h-5 transition-transform duration-300 hover:rotate-12"
+        className="w-4 h-4 transition-transform duration-200"
       />
     </button>
   )

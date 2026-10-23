@@ -11,9 +11,9 @@ export const LanguageToggle: React.FC = () => {
       type="button"
       onClick={toggleLocale}
       aria-label="Switch language"
-      className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      className="flex items-center gap-1 px-2 py-1 rounded-full text-xs font-mono font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none"
     >
-      <Icon icon="lucide:languages" className="w-4 h-4 text-indigo-500" />
+      <Icon icon="lucide:languages" className="w-3.5 h-3.5 text-zinc-400" />
       <span>{currentLocale === 'en' ? 'AR' : 'EN'}</span>
     </button>
   )

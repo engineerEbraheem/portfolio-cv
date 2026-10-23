@@ -1,6 +1,62 @@
-@import 'primeicons/primeicons.css';
-@import 'primereact/resources/primereact.min.css';
-@import 'primeflex/primeflex.css';
+/* Local Fonts - Inter (Latin) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/Inter-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/Inter-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/Inter-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/Inter-Bold.woff2') format('woff2');
+}
+
+/* Local Fonts - Cairo (Arabic) */
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/Cairo-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/Cairo-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/Cairo-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/Cairo-Bold.woff2') format('woff2');
+}
 
 @tailwind base;
 @tailwind components;
@@ -9,48 +65,36 @@
 @layer base {
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-arabic: 'Cairo', 'Inter', system-ui, sans-serif;
   }
 
   html {
     font-family: var(--font-sans);
+    color-scheme: light dark;
   }
 
-  /* Custom smooth scrollbar */
+  html[dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+
+  /* Custom subtle scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600 transition-colors;
+    @apply bg-zinc-300 dark:bg-zinc-700 rounded-full hover:bg-zinc-400 dark:hover:bg-zinc-600 transition-colors;
   }
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-white/75 dark:bg-slate-900/75 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm;
+    @apply bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-zinc-200/80 dark:border-zinc-800/80 shadow-sm;
   }
   .glass-nav {
-    @apply bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-800/60;
+    @apply bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md border border-zinc-200/60 dark:border-zinc-800/60 shadow-sm;
   }
-}
-
-/* PrimeReact Theme & Tailwind Harmonization */
-.p-component {
-  font-family: var(--font-sans) !important;
-}
-
-/* Dark mode adjustments for PrimeReact native elements */
-.dark .p-card {
-  background: #0f172a !important;
-  color: #f8fafc !important;
-  border-color: #1e293b !important;
-}
-
-.dark .p-dialog {
-  background: #0f172a !important;
-  border-color: #1e293b !important;
 }
