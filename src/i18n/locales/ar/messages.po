@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-10-23 20:00+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ar\n"
+
+#: src/components/Navbar.tsx:46
+#: src/components/Navbar.tsx:88
+#: src/routes/about/route.tsx:30
+msgid "About & Experience"
+msgstr "عني والخبرات"
+
+#: src/routes/index.tsx:334
+msgid "Academic & Analytical Foundation"
+msgstr "الأساس الأكاديمي والتحليلي"
+
+#: src/routes/index.tsx:136
+msgid "Commercial Impact"
+msgstr "الأثر التجاري والمهني"
+
+#: src/components/Navbar.tsx:48
+#: src/components/Navbar.tsx:90
+msgid "Contact"
+msgstr "تواصل"
+
+#: src/routes/contact/route.tsx:27
+#: src/routes/index.tsx:413
+msgid "Contact & Collaboration"
+msgstr "تواصل وتعاون"
+
+#: src/routes/index.tsx:75
+msgid "Explore Projects"
+msgstr "استعراض المشاريع"
+
+#: src/routes/index.tsx:242
+msgid "Foundational & Featured Projects"
+msgstr "المشاريع الأساسية"
+
+#: src/components/Navbar.tsx:45
+#: src/components/Navbar.tsx:87
+msgid "Home"
+msgstr "الرئيسية"
+
+#: src/components/Navbar.tsx:47
+#: src/components/Navbar.tsx:89
+msgid "Projects"
+msgstr "المشاريع"
+
+#: src/routes/index.tsx:250
+#: src/routes/projects/index.tsx:79
+msgid "Projects & Code"
+msgstr "المشاريع والأكواد البرمجية"
+
+#: src/routes/index.tsx:58
+msgid "Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems."
+msgstr "مهندس برمجيات متخصص في تطوير الواجهات الأمامية وبناء أنظمة React المعمارية المتقدمة."
+
+#: src/routes/index.tsx:181
+msgid "Technical Competency Matrix"
+msgstr "المصفوفة التقنية"
+
+#: src/routes/index.tsx:84
+msgid "View Full CV & Experience"
+msgstr "السيرة الذاتية والخبرات"

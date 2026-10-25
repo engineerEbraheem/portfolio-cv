@@ -11,6 +11,19 @@ export interface NavItem {
   icon: string
 }
 
+export interface ProjectCaseStudy {
+  overview: string
+  objectives: string[]
+  architectureDecisions: {
+    decision: string
+    rationale: string
+  }[]
+  challengesSolved: {
+    challenge: string
+    solution: string
+  }[]
+}
+
 export interface ProjectItem {
   id: string
   title: string
@@ -23,6 +36,7 @@ export interface ProjectItem {
   demoUrl?: string
   highlights: string[]
   featured: boolean
+  caseStudy?: ProjectCaseStudy
 }
 
 export interface ExperienceItem {
@@ -59,6 +73,7 @@ export interface PortfolioData {
     email: string
     phone: string
     github: string
+    linkedin: string
     bio: string
     profileSummary: string
     status: string
@@ -81,6 +96,7 @@ export const portfolioConfig: PortfolioData = {
     email: 'ebraheemnaji123@gmail.com',
     phone: '+967 773307514',
     github: 'https://github.com/engineerEbraheem',
+    linkedin: 'https://www.linkedin.com/in/ebraheem-althobary-696022245',
     status: 'Available for Engineering & Frontend Architecture Roles',
     bio: 'Highly adaptable Software Engineer specializing in Front-end Development, building robust, scalable web applications with strong problem-solving and analytical thinking.',
     profileSummary:
@@ -223,6 +239,45 @@ export const portfolioConfig: PortfolioData = {
         'Accessible, high-performance UI using headless Radix UI primitives and Tailwind CSS with 100% self-hosted local fonts.',
       ],
       featured: true,
+      caseStudy: {
+        overview:
+          'A flagship, human-engineered developer portfolio platform crafted to showcase enterprise-grade frontend architecture, clean code standards, and rigorous design discipline without relying on AI-generated UI slop.',
+        objectives: [
+          'Deliver an exceptional user experience adhering strictly to Vercel/Raycast design principles.',
+          'Provide compile-time type safety across all routing endpoints and URL search parameters.',
+          'Enable seamless bidirectional internationalization (English LTR and Arabic RTL) with compiled offline catalogs.',
+          'Eliminate external CDN font dependencies by utilizing bundled modern typography (Inter and Cairo).',
+        ],
+        architectureDecisions: [
+          {
+            decision: 'Zustand vs. Redux Toolkit for UI State',
+            rationale:
+              'Zustand offers a lightweight, boilerplate-free store footprint with granular selectors and seamless LocalStorage persistence, ideal for client-side theme and language preferences without context re-render overhead.',
+          },
+          {
+            decision: 'TanStack Router with File-Based Tree Generation',
+            rationale:
+              'Guarantees strict parameter validation, type-safe navigation links, and automatic code-splitting per route, preventing runtime 404s and broken URL params.',
+          },
+          {
+            decision: 'Headless Radix UI Primitives with Tailwind CSS',
+            rationale:
+              'Provides unopinionated, fully accessible ARIA compliance and complete design token customization without bloated monolithic component libraries.',
+          },
+        ],
+        challengesSolved: [
+          {
+            challenge: 'Bidirectional (LTR/RTL) Layout & Font Orchestration',
+            solution:
+              'Architected synchronized HTML attribute orchestration (`dir` and `lang`) in Zustand with automated CSS variable switching to activate local Cairo typography for Arabic and Inter for English without cumulative layout shifts.',
+          },
+          {
+            challenge: 'Zero-Runtime i18n Catalog Compilation',
+            solution:
+              'Configured Lingui CLI compilation to pre-compile message catalogs into ultra-lightweight JavaScript modules, eliminating client-side extraction parsing overhead.',
+          },
+        ],
+      },
     },
     {
       id: 'restaurant-orders-redux',
@@ -242,6 +297,39 @@ export const portfolioConfig: PortfolioData = {
         'Adaptive mobile-first layout with smooth order interaction flow.',
       ],
       featured: true,
+      caseStudy: {
+        overview:
+          'A responsive restaurant order management interface developed to solve real-time client-side order computation, category classification, and rapid search filtering across dynamic menu items.',
+        objectives: [
+          'Implement predictable unidirectional data flow with Redux Toolkit slices.',
+          'Provide instant client-side menu filtering and price aggregation.',
+          'Design an accessible mobile-first ordering experience with intuitive quantity modifiers.',
+        ],
+        architectureDecisions: [
+          {
+            decision: 'Redux Toolkit Slice Architecture',
+            rationale:
+              'Leveraged createSlice to encapsulate reducer logic and actions for cart item additions, removals, and total amount calculation with immutable updates guaranteed by Immer.',
+          },
+          {
+            decision: 'Pure Component Separation',
+            rationale:
+              'Divided UI into presentation-focused menu cards, filter chips, and cart summary drawers to maintain clean separation of concerns and high reusability.',
+          },
+        ],
+        challengesSolved: [
+          {
+            challenge: 'Real-Time Cart Synchronization & Price Computation',
+            solution:
+              'Implemented memoized selectors to compute item sub-totals, discounts, and total order prices instantaneously during state mutations without unnecessary component re-renders.',
+          },
+          {
+            challenge: 'Smooth Filter & Search Indexing',
+            solution:
+              'Engineered a combined filtering pipeline that handles concurrent category selection and text queries with deterministic sorting.',
+          },
+        ],
+      },
     },
     {
       id: 'movie-display-redux',
@@ -261,6 +349,46 @@ export const portfolioConfig: PortfolioData = {
         'Modular component architecture with reusable cards and error boundaries.',
       ],
       featured: true,
+      caseStudy: {
+        overview:
+          'A rich movie discovery catalog interface engineered to practice asynchronous REST API integration, dynamic search querying, and comprehensive state lifecycle management.',
+        objectives: [
+          'Consume third-party movie database APIs with robust error handling and loading indicators.',
+          'Enable live search querying with debounced state dispatch to avoid unnecessary network queries.',
+          'Build an interactive modal inspection view for movie metadata and ratings.',
+        ],
+        architectureDecisions: [
+          {
+            decision: 'Asynchronous State Management with createAsyncThunk',
+            rationale:
+              'Standardized loading, success, and error lifecycles across movie queries, ensuring predictable UI feedback during network latency.',
+          },
+          {
+            decision: 'Axios Instance Abstraction',
+            rationale:
+              'Configured centralized Axios HTTP clients with base URLs, API keys, and error interceptors for consistent API communications.',
+          },
+        ],
+        challengesSolved: [
+          {
+            challenge: 'Search Query Debouncing & Request Race Conditions',
+            solution:
+              'Implemented input debounce and request cancellation tokens to ensure that outdated asynchronous network responses never overwrite newer search results.',
+          },
+          {
+            challenge: 'Responsive Media Layout Performance',
+            solution:
+              'Optimized image card rendering with aspect-ratio preservation and lightweight modal backdrops for fluid navigation across devices.',
+          },
+        ],
+      },
     },
   ],
 }
+
+import { portfolioAr } from './portfolio.ar'
+
+export function getPortfolioConfig(locale: string = 'en'): PortfolioData {
+  return locale === 'ar' ? portfolioAr : portfolioConfig
+}
+

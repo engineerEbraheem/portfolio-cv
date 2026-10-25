@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react'
 import { Input } from '@/components/ui/Input'
 import { Textarea } from '@/components/ui/Textarea'
 import { Button } from '@/components/ui/Button'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -18,6 +19,7 @@ export type ContactFormData = z.infer<typeof contactSchema>
 
 export const ContactForm: React.FC = () => {
   const [submitted, setSubmitted] = useState(false)
+  const { currentLocale } = useLanguage()
 
   const {
     register,
@@ -36,12 +38,18 @@ export const ContactForm: React.FC = () => {
     reset()
   }
 
+  const isAr = currentLocale === 'ar'
+
   return (
     <div className="rounded-xl border border-zinc-200/80 bg-white/70 dark:border-zinc-800/80 dark:bg-zinc-900/40 p-6 sm:p-8 space-y-6 shadow-sm">
       {submitted && (
         <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 flex items-center gap-2.5 text-xs text-emerald-800 dark:text-emerald-300">
           <Icon icon="lucide:check-circle" className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>Thank you! Your message has been sent successfully. I will respond promptly.</span>
+          <span>
+            {isAr
+              ? 'شكراً لك! تم إرسال رسالتك بنجاح. سأقوم بالرد عليك في أقرب وقت ممكن.'
+              : 'Thank you! Your message has been sent successfully. I will respond promptly.'}
+          </span>
         </div>
       )}
 
@@ -53,17 +61,17 @@ export const ContactForm: React.FC = () => {
               htmlFor="name"
               className="text-xs font-medium text-zinc-700 dark:text-zinc-300"
             >
-              Your Name *
+              {isAr ? 'الاسم الكريم *' : 'Your Name *'}
             </label>
             <Input
               id="name"
               {...register('name')}
-              placeholder="e.g. John Doe"
+              placeholder={isAr ? 'مثال: أحمد محمد' : 'e.g. John Doe'}
               className={errors.name ? 'border-rose-500 focus-visible:ring-rose-500' : ''}
             />
             {errors.name && (
               <span className="text-xs text-rose-500 block">
-                {errors.name.message}
+                {isAr ? 'يرجى إدخال اسم صحيح لا يقل عن حرفين' : errors.name.message}
               </span>
             )}
           </div>
@@ -74,18 +82,18 @@ export const ContactForm: React.FC = () => {
               htmlFor="email"
               className="text-xs font-medium text-zinc-700 dark:text-zinc-300"
             >
-              Email Address *
+              {isAr ? 'البريد الإلكتروني *' : 'Email Address *'}
             </label>
             <Input
               id="email"
               type="email"
               {...register('email')}
-              placeholder="john@example.com"
+              placeholder={isAr ? 'name@example.com' : 'john@example.com'}
               className={errors.email ? 'border-rose-500 focus-visible:ring-rose-500' : ''}
             />
             {errors.email && (
               <span className="text-xs text-rose-500 block">
-                {errors.email.message}
+                {isAr ? 'يرجى إدخال بريد إلكتروني صالح' : errors.email.message}
               </span>
             )}
           </div>
@@ -97,17 +105,21 @@ export const ContactForm: React.FC = () => {
             htmlFor="subject"
             className="text-xs font-medium text-zinc-700 dark:text-zinc-300"
           >
-            Subject *
+            {isAr ? 'موضوع الرسالة *' : 'Subject *'}
           </label>
           <Input
             id="subject"
             {...register('subject')}
-            placeholder="Front-end Engineering Collaboration / Inquiries"
+            placeholder={
+              isAr
+                ? 'استفسار بخصوص عمل أو مشروع واجهات...'
+                : 'Front-end Engineering Collaboration / Inquiries'
+            }
             className={errors.subject ? 'border-rose-500 focus-visible:ring-rose-500' : ''}
           />
           {errors.subject && (
             <span className="text-xs text-rose-500 block">
-              {errors.subject.message}
+              {isAr ? 'يرجى تحديد موضوع لا يقل عن 3 أحرف' : errors.subject.message}
             </span>
           )}
         </div>
@@ -118,18 +130,22 @@ export const ContactForm: React.FC = () => {
             htmlFor="message"
             className="text-xs font-medium text-zinc-700 dark:text-zinc-300"
           >
-            Message *
+            {isAr ? 'تفاصيل الرسالة *' : 'Message *'}
           </label>
           <Textarea
             id="message"
             rows={5}
             {...register('message')}
-            placeholder="Tell me about your application, requirements, or timeline..."
+            placeholder={
+              isAr
+                ? 'اكتب تفاصيل طلبك أو متطلبات النظام والجدول الزمني...'
+                : 'Tell me about your application, requirements, or timeline...'
+            }
             className={errors.message ? 'border-rose-500 focus-visible:ring-rose-500' : ''}
           />
           {errors.message && (
             <span className="text-xs text-rose-500 block">
-              {errors.message.message}
+              {isAr ? 'يرجى كتابة رسالة لا تقل عن 10 أحرف' : errors.message.message}
             </span>
           )}
         </div>
@@ -143,12 +159,12 @@ export const ContactForm: React.FC = () => {
             {isSubmitting ? (
               <span className="inline-flex items-center gap-1.5">
                 <Icon icon="lucide:loader-2" className="w-3.5 h-3.5 animate-spin" />
-                <span>Sending...</span>
+                <span>{isAr ? 'جاري الإرسال...' : 'Sending...'}</span>
               </span>
             ) : (
               <span className="inline-flex items-center gap-1.5">
-                <Icon icon="lucide:send" className="w-3.5 h-3.5" />
-                <span>Send Message</span>
+                <Icon icon="lucide:send" className="w-3.5 h-3.5 rtl:rotate-180" />
+                <span>{isAr ? 'إرسال الرسالة' : 'Send Message'}</span>
               </span>
             )}
           </Button>

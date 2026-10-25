@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { Trans } from '@lingui/react/macro'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
-import { portfolioConfig } from '@/config/portfolio'
+import { getPortfolioConfig } from '@/config/portfolio'
+import { useLanguage } from '@/hooks/useLanguage'
 import { ExperienceTimeline } from './components/ExperienceTimeline'
 
 export const Route = createFileRoute('/about')({
@@ -11,7 +13,8 @@ export const Route = createFileRoute('/about')({
 })
 
 function AboutPage() {
-  const { personal, education, skillCategories } = portfolioConfig
+  const { currentLocale } = useLanguage()
+  const { personal, education, skillCategories } = getPortfolioConfig(currentLocale)
 
   return (
     <div className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 w-full space-y-16">
@@ -24,10 +27,12 @@ function AboutPage() {
       >
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            About & Experience
+            <Trans>About & Experience</Trans>
           </h1>
           <p className="text-base text-zinc-600 dark:text-zinc-400">
-            Background, commercial engineering track record, and technical competencies.
+            {currentLocale === 'ar'
+              ? 'الخلفية الهندسية، سجل الخبرات المهنية في سوق العمل، والمصفوفة المهارية.'
+              : 'Background, commercial engineering track record, and technical competencies.'}
           </p>
         </div>
 
@@ -38,31 +43,39 @@ function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-zinc-100 dark:border-zinc-800 text-xs">
             <div>
-              <span className="text-zinc-400 block font-mono">Location</span>
+              <span className="text-zinc-400 block font-mono">
+                {currentLocale === 'ar' ? 'الموقع' : 'Location'}
+              </span>
               <span className="font-medium text-zinc-800 dark:text-zinc-200">
                 {personal.address}
               </span>
             </div>
             <div>
-              <span className="text-zinc-400 block font-mono">Email</span>
+              <span className="text-zinc-400 block font-mono">
+                {currentLocale === 'ar' ? 'البريد الإلكتروني' : 'Email'}
+              </span>
               <a
                 href={`mailto:${personal.email}`}
                 className="font-medium text-zinc-800 dark:text-zinc-200 hover:underline"
               >
-                {personal.email}
+                <bdi dir="ltr">{personal.email}</bdi>
               </a>
             </div>
             <div>
-              <span className="text-zinc-400 block font-mono">Phone</span>
+              <span className="text-zinc-400 block font-mono">
+                {currentLocale === 'ar' ? 'الهاتف' : 'Phone'}
+              </span>
               <a
                 href={`tel:${personal.phone}`}
                 className="font-medium text-zinc-800 dark:text-zinc-200 hover:underline"
               >
-                {personal.phone}
+                <bdi dir="ltr">{personal.phone}</bdi>
               </a>
             </div>
             <div>
-              <span className="text-zinc-400 block font-mono">Languages</span>
+              <span className="text-zinc-400 block font-mono">
+                {currentLocale === 'ar' ? 'اللغات' : 'Languages'}
+              </span>
               <span className="font-medium text-zinc-800 dark:text-zinc-200">
                 {personal.languages.map((l) => `${l.name} (${l.level})`).join(', ')}
               </span>
@@ -75,10 +88,12 @@ function AboutPage() {
       <section className="space-y-6">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Commercial Work Experience
+            {currentLocale === 'ar' ? 'الخبرة المهنية والتجارية' : 'Commercial Work Experience'}
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-            Front-end development, architecture, and software quality assurance history
+            {currentLocale === 'ar'
+              ? 'تطوير الواجهات الأمامية، بناء المعمارية، وضمان جودة البرمجيات'
+              : 'Front-end development, architecture, and software quality assurance history'}
           </p>
         </div>
 
@@ -89,10 +104,12 @@ function AboutPage() {
       <section className="space-y-6">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Education & Courses
+            {currentLocale === 'ar' ? 'التعليم والدورات التدريبية' : 'Education & Courses'}
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-            University engineering degree and specialized certifications
+            {currentLocale === 'ar'
+              ? 'المؤهلات الجامعية الهندسية والشهادات التدريبية التخصصية'
+              : 'University engineering degree and specialized certifications'}
           </p>
         </div>
 
@@ -104,7 +121,8 @@ function AboutPage() {
                   {edu.degree}
                 </CardTitle>
                 <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                  {edu.institution} {edu.faculty ? `• ${edu.faculty}` : ''} • {edu.period}
+                  {edu.institution} {edu.faculty ? `• ${edu.faculty}` : ''} •{' '}
+                  <bdi dir="ltr">{edu.period}</bdi>
                 </p>
               </CardHeader>
               {edu.description && (
@@ -121,10 +139,12 @@ function AboutPage() {
       <section className="space-y-6">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Technical Skills & Technologies
+            {currentLocale === 'ar' ? 'المهارات والتقنيات البرمجية' : 'Technical Skills & Technologies'}
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-            Production-tested libraries, styling systems, databases, and tooling
+            {currentLocale === 'ar'
+              ? 'المكتبات المتقدمة، أنظمة التنسيق، قواعد البيانات، والأدوات الهندسية'
+              : 'Production-tested libraries, styling systems, databases, and tooling'}
           </p>
         </div>
 
@@ -154,7 +174,7 @@ function AboutPage() {
       {/* Soft Skills */}
       <section className="rounded-xl border border-zinc-200/80 bg-zinc-50/60 dark:border-zinc-800/80 dark:bg-zinc-900/40 p-5 space-y-3">
         <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 font-mono">
-          Core Competencies & Soft Skills
+          {currentLocale === 'ar' ? 'الكفاءات والمهارات الشخصية' : 'Core Competencies & Soft Skills'}
         </h3>
         <div className="flex flex-wrap gap-1.5">
           {personal.softSkills.map((skill) => (

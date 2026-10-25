@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { motion, type Variants } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { portfolioConfig } from '@/config/portfolio'
+import { getPortfolioConfig } from '@/config/portfolio'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -30,7 +32,8 @@ const cardVariants: Variants = {
 }
 
 function HomePage() {
-  const { personal, projects, experience, education } = portfolioConfig
+  const { currentLocale } = useLanguage()
+  const { personal, projects, experience, education } = getPortfolioConfig(currentLocale)
   const currentRole = experience.find((e) => e.isCurrent)
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 2)
 
@@ -49,7 +52,13 @@ function HomePage() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-medium max-w-2xl mx-auto leading-relaxed">
-            Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems.
+            {currentLocale === 'ar' ? (
+              personal.bio
+            ) : (
+              <Trans>
+                Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems.
+              </Trans>
+            )}
           </p>
         </motion.div>
 
@@ -62,14 +71,18 @@ function HomePage() {
         >
           <Button asChild size="default" className="gap-2">
             <Link to="/projects">
-              <span>View Projects</span>
-              <Icon icon="lucide:arrow-right" className="w-4 h-4" />
+              <span>
+                <Trans>Explore Projects</Trans>
+              </span>
+              <Icon icon="lucide:arrow-right" className="w-4 h-4 rtl:rotate-180" />
             </Link>
           </Button>
 
           <Button asChild variant="outline" size="default">
             <Link to="/about">
-              <span>Experience & CV</span>
+              <span>
+                <Trans>View Full CV & Experience</Trans>
+              </span>
             </Link>
           </Button>
 
@@ -84,6 +97,20 @@ function HomePage() {
               <span>GitHub</span>
             </a>
           </Button>
+
+          {personal.linkedin && (
+            <Button asChild variant="ghost" size="default">
+              <a
+                href={personal.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+              >
+                <Icon icon="lucide:linkedin" className="w-4 h-4 text-[#0A66C2]" />
+                <span>LinkedIn</span>
+              </a>
+            </Button>
+          )}
         </motion.div>
       </section>
 
@@ -105,10 +132,12 @@ function HomePage() {
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Commercial Impact</span>
+                <span>
+                  <Trans>Commercial Impact</Trans>
+                </span>
               </div>
-              <span className="text-xs font-mono text-zinc-400">
-                {currentRole?.period || '01/2024 - Present'}
+              <span className="text-xs font-mono text-zinc-400 dir-ltr inline-block">
+                <bdi dir="ltr">{currentRole?.period || '01/2024 - Present'}</bdi>
               </span>
             </div>
 
@@ -117,12 +146,12 @@ function HomePage() {
                 {currentRole?.role} @ {currentRole?.company}
               </h2>
               <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono">
-                {currentRole?.location} &bull; Enterprise Web Applications & UI Engineering
+                {currentRole?.location} &bull; {currentRole?.description}
               </p>
             </div>
 
             <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-              Leading the architecture and development of scalable, high-performance web applications using advanced React paradigms. Implementing state orchestration (Zustand), complex client routing, accessible form infrastructures (React Hook Form), and robust data-fetching layers (TanStack Query, OpenApiFetch).
+              {currentRole?.highlights[0] || personal.bio}
             </p>
           </div>
 
@@ -148,17 +177,19 @@ function HomePage() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400">
               <Icon icon="lucide:cpu" className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Core Tech Matrix</span>
+              <span>
+                <Trans>Technical Competency Matrix</Trans>
+              </span>
             </div>
             <h3 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Specialized Stack
+              {currentLocale === 'ar' ? 'التقنيات المتخصصة' : 'Specialized Stack'}
             </h3>
           </div>
 
           <div className="space-y-3.5 text-xs">
             <div className="space-y-1.5">
               <span className="font-mono text-zinc-400 text-[11px] block uppercase tracking-wider">
-                State & Architecture
+                {currentLocale === 'ar' ? 'إدارة الحالة والمعمارية' : 'State & Architecture'}
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {['Zustand', 'Redux Toolkit', 'TanStack Router'].map((t) => (
@@ -171,7 +202,7 @@ function HomePage() {
 
             <div className="space-y-1.5">
               <span className="font-mono text-zinc-400 text-[11px] block uppercase tracking-wider">
-                Data & Forms
+                {currentLocale === 'ar' ? 'البيانات والنماذج' : 'Data & Forms'}
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {['TanStack Query', 'React Hook Form', 'Zod'].map((t) => (
@@ -184,7 +215,7 @@ function HomePage() {
 
             <div className="space-y-1.5">
               <span className="font-mono text-zinc-400 text-[11px] block uppercase tracking-wider">
-                Styling & Design Primitives
+                {currentLocale === 'ar' ? 'التنسيق والمكونات المجردة' : 'Styling & Design Primitives'}
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {['Tailwind CSS', 'Radix UI', 'SASS', 'D3.js'].map((t) => (
@@ -207,14 +238,18 @@ function HomePage() {
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400">
               <Icon icon="lucide:layers" className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Production & Open Source Work</span>
+              <span>
+                <Trans>Foundational & Featured Projects</Trans>
+              </span>
             </div>
             <Link
               to="/projects"
               className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 inline-flex items-center gap-1 transition-colors"
             >
-              <span>All projects</span>
-              <Icon icon="lucide:chevron-right" className="w-3.5 h-3.5" />
+              <span>
+                <Trans>Projects & Code</Trans>
+              </span>
+              <Icon icon="lucide:chevron-right" className="w-3.5 h-3.5 rtl:rotate-180" />
             </Link>
           </div>
 
@@ -236,7 +271,7 @@ function HomePage() {
                           target="_blank"
                           rel="noreferrer"
                           className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-                          aria-label="Live Demo"
+                          aria-label={currentLocale === 'ar' ? 'معاينة حية' : 'Live Demo'}
                         >
                           <Icon icon="lucide:external-link" className="w-3.5 h-3.5" />
                         </a>
@@ -247,7 +282,7 @@ function HomePage() {
                           target="_blank"
                           rel="noreferrer"
                           className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-                          aria-label="GitHub Code"
+                          aria-label={currentLocale === 'ar' ? 'كود المصدر' : 'GitHub Code'}
                         >
                           <Icon icon="lucide:github" className="w-3.5 h-3.5" />
                         </a>
@@ -295,10 +330,12 @@ function HomePage() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400">
               <Icon icon="lucide:graduation-cap" className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Academic & Analytical Core</span>
+              <span>
+                <Trans>Academic & Analytical Foundation</Trans>
+              </span>
             </div>
             <h3 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Engineering Foundation
+              {currentLocale === 'ar' ? 'الأساس الأكاديمي والتحليلي' : 'Engineering Foundation'}
             </h3>
           </div>
 
@@ -316,8 +353,8 @@ function HomePage() {
                 <p className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
                   {edu.institution} {edu.faculty ? `• ${edu.faculty}` : ''}
                 </p>
-                <span className="text-[10px] font-mono text-zinc-400 block pt-0.5">
-                  {edu.period}
+                <span className="text-[10px] font-mono text-zinc-400 block pt-0.5 dir-ltr inline-block">
+                  <bdi dir="ltr">{edu.period}</bdi>
                 </span>
               </div>
             ))}
@@ -335,11 +372,15 @@ function HomePage() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <h3 className="font-bold text-base sm:text-lg text-zinc-900 dark:text-zinc-100">
-                Available for Engineering & Architecture Roles
+                {currentLocale === 'ar'
+                  ? 'متاح لأدوار هندسة وتطوير الواجهات الأمامية'
+                  : 'Available for Engineering & Architecture Roles'}
               </h3>
             </div>
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
-              Open to high-impact Front-end Development positions, React architecture consulting, and technical leadership.
+              {currentLocale === 'ar'
+                ? 'مستعد للمساهمة في بناء تطبيقات React المعمارية، وتقديم استشارات واجهات المستخدم والقيادة التقنية.'
+                : 'Open to high-impact Front-end Development positions, React architecture consulting, and technical leadership.'}
             </p>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400 pt-1">
               <span className="inline-flex items-center gap-1.5">
@@ -352,7 +393,7 @@ function HomePage() {
                 className="inline-flex items-center gap-1.5 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               >
                 <Icon icon="lucide:mail" className="w-3.5 h-3.5 text-zinc-400" />
-                <span>{personal.email}</span>
+                <bdi dir="ltr">{personal.email}</bdi>
               </a>
               <span>&bull;</span>
               <a
@@ -360,7 +401,7 @@ function HomePage() {
                 className="inline-flex items-center gap-1.5 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               >
                 <Icon icon="lucide:phone" className="w-3.5 h-3.5 text-zinc-400" />
-                <span>{personal.phone}</span>
+                <bdi dir="ltr">{personal.phone}</bdi>
               </a>
             </div>
           </div>
@@ -368,8 +409,10 @@ function HomePage() {
           <div className="flex items-center gap-2.5 shrink-0">
             <Button asChild size="default">
               <Link to="/contact">
-                <span>Get in Touch</span>
-                <Icon icon="lucide:send" className="w-3.5 h-3.5" />
+                <span>
+                  <Trans>Contact & Collaboration</Trans>
+                </span>
+                <Icon icon="lucide:send" className="w-3.5 h-3.5 rtl:rotate-180" />
               </Link>
             </Button>
           </div>

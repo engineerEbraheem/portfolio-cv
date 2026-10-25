@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-10-23 20:00+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+
+#: src/components/Navbar.tsx:46
+#: src/components/Navbar.tsx:88
+#: src/routes/about/route.tsx:30
+msgid "About & Experience"
+msgstr "About & Experience"
+
+#: src/routes/index.tsx:334
+msgid "Academic & Analytical Foundation"
+msgstr "Academic & Analytical Foundation"
+
+#: src/routes/index.tsx:136
+msgid "Commercial Impact"
+msgstr "Commercial Impact"
+
+#: src/components/Navbar.tsx:48
+#: src/components/Navbar.tsx:90
+msgid "Contact"
+msgstr "Contact"
+
+#: src/routes/contact/route.tsx:27
+#: src/routes/index.tsx:413
+msgid "Contact & Collaboration"
+msgstr "Contact & Collaboration"
+
+#: src/routes/index.tsx:75
+msgid "Explore Projects"
+msgstr "Explore Projects"
+
+#: src/routes/index.tsx:242
+msgid "Foundational & Featured Projects"
+msgstr "Foundational & Featured Projects"
+
+#: src/components/Navbar.tsx:45
+#: src/components/Navbar.tsx:87
+msgid "Home"
+msgstr "Home"
+
+#: src/components/Navbar.tsx:47
+#: src/components/Navbar.tsx:89
+msgid "Projects"
+msgstr "Projects"
+
+#: src/routes/index.tsx:250
+#: src/routes/projects/index.tsx:79
+msgid "Projects & Code"
+msgstr "Projects & Code"
+
+#: src/routes/index.tsx:58
+msgid "Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems."
+msgstr "Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems."
+
+#: src/routes/index.tsx:181
+msgid "Technical Competency Matrix"
+msgstr "Technical Competency Matrix"
+
+#: src/routes/index.tsx:84
+msgid "View Full CV & Experience"
+msgstr "View Full CV & Experience"

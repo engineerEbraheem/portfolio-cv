@@ -6,9 +6,11 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { ProjectItem } from '@/config/portfolio'
 import { useProjectStore } from '@/store/useProjectStore'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => {
   const openProjectModal = useProjectStore((s) => s.openProjectModal)
+  const { currentLocale } = useLanguage()
 
   return (
     <Card className="flex flex-col justify-between hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors h-full">
@@ -24,7 +26,8 @@ export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => 
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors p-1"
-                aria-label="Live Demo"
+                aria-label={currentLocale === 'ar' ? 'معاينة حية' : 'Live Demo'}
+                title={currentLocale === 'ar' ? 'معاينة حية' : 'Live Demo'}
               >
                 <Icon icon="lucide:external-link" className="w-3.5 h-3.5" />
               </a>
@@ -35,7 +38,8 @@ export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => 
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors p-1"
-                aria-label="Source code"
+                aria-label={currentLocale === 'ar' ? 'كود المصدر' : 'Source Code'}
+                title={currentLocale === 'ar' ? 'كود المصدر' : 'Source Code'}
               >
                 <Icon icon="lucide:github" className="w-3.5 h-3.5" />
               </a>
@@ -78,13 +82,13 @@ export const ProjectCard: React.FC<{ project: ProjectItem }> = ({ project }) => 
           className="text-xs px-2 h-7"
           onClick={() => openProjectModal(project)}
         >
-          <span>Preview Details</span>
+          <span>{currentLocale === 'ar' ? 'معاينة سريعة' : 'Preview Details'}</span>
         </Button>
 
         <Button asChild variant="outline" size="sm" className="text-xs h-7">
           <Link to="/projects/$projectId" params={{ projectId: project.id }}>
-            <span>Specification</span>
-            <Icon icon="lucide:arrow-right" className="w-3 h-3" />
+            <span>{currentLocale === 'ar' ? 'المواصفات / دراسة الحالة' : 'Specification'}</span>
+            <Icon icon="lucide:arrow-right" className="w-3 h-3 rtl:rotate-180" />
           </Link>
         </Button>
       </CardFooter>

@@ -1,15 +1,19 @@
 import React from 'react'
 import { Badge } from '@/components/ui/Badge'
-import { portfolioConfig } from '@/config/portfolio'
+import { getPortfolioConfig } from '@/config/portfolio'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export const ExperienceTimeline: React.FC = () => {
+  const { currentLocale } = useLanguage()
+  const { experience } = getPortfolioConfig(currentLocale)
+
   return (
-    <div className="space-y-6 relative before:absolute before:inset-y-0 before:left-3 before:w-px before:bg-zinc-200 dark:before:bg-zinc-800">
-      {portfolioConfig.experience.map((item) => (
-        <div key={item.company} className="relative pl-8 group">
+    <div className="space-y-6 relative before:absolute before:inset-y-0 before:left-3 rtl:before:left-auto rtl:before:right-3 before:w-px before:bg-zinc-200 dark:before:bg-zinc-800">
+      {experience.map((item) => (
+        <div key={item.company} className="relative pl-8 rtl:pl-0 rtl:pr-8 group">
           {/* Timeline Dot */}
           <div
-            className={`absolute left-3 top-2 -translate-x-1/2 w-2.5 h-2.5 rounded-full border-2 transition-transform ${
+            className={`absolute left-3 rtl:left-auto rtl:right-3 top-2 -translate-x-1/2 rtl:translate-x-1/2 w-2.5 h-2.5 rounded-full border-2 transition-transform ${
               item.isCurrent
                 ? 'bg-emerald-500 border-white dark:border-zinc-950 ring-2 ring-emerald-500/20'
                 : 'bg-zinc-400 dark:bg-zinc-600 border-white dark:border-zinc-950'
@@ -27,12 +31,12 @@ export const ExperienceTimeline: React.FC = () => {
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-zinc-400">
-                  {item.period}
+                <span className="text-xs font-mono text-zinc-400 dir-ltr inline-block">
+                  <bdi dir="ltr">{item.period}</bdi>
                 </span>
                 {item.isCurrent && (
                   <Badge variant="success" className="text-[10px]">
-                    Current
+                    {currentLocale === 'ar' ? 'حالياً' : 'Current'}
                   </Badge>
                 )}
               </div>
