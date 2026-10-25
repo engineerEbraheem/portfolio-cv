@@ -17,9 +17,15 @@ const contactSchema = z.object({
 
 export type ContactFormData = z.infer<typeof contactSchema>
 
+interface FormStatus {
+  type: 'success' | 'error' | null
+  message: string
+}
+
 export const ContactForm: React.FC = () => {
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<FormStatus>({ type: null, message: '' })
   const { currentLocale } = useLanguage()
+  const isAr = currentLocale === 'ar'
 
   const {
     register,
@@ -31,25 +37,73 @@ export const ContactForm: React.FC = () => {
   })
 
   const onSubmit = async (data: ContactFormData) => {
-    // Simulated async form dispatch
-    await new Promise((resolve) => setTimeout(resolve, 600))
-    console.log('Contact form inquiry sent:', data)
-    setSubmitted(true)
-    reset()
-  }
+    setStatus({ type: null, message: '' })
 
-  const isAr = currentLocale === 'ar'
+    try {
+      const response = await fetch('https://formspree.io/f/mgaaogno', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Formspree error: ${response.status}`)
+      }
+
+      setStatus({
+        type: 'success',
+        message: isAr
+          ? 'تم إرسال رسالتك بنجاح! سأتواصل معك في أقرب وقت.'
+          : 'Message sent successfully! I will get back to you soon.',
+      })
+      reset()
+    } catch {
+      setStatus({
+        type: 'error',
+        message: isAr
+          ? 'حدث خطأ أثناء إرسال الرسالة، يرجى المحاولة مرة أخرى أو مراسلتي مباشرة عبر البريد.'
+          : 'Failed to send message. Please try again or reach out directly via email.',
+      })
+    }
+  }
 
   return (
     <div className="rounded-xl border border-zinc-200/80 bg-white/70 dark:border-zinc-800/80 dark:bg-zinc-900/40 p-6 sm:p-8 space-y-6 shadow-sm">
-      {submitted && (
-        <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 flex items-center gap-2.5 text-xs text-emerald-800 dark:text-emerald-300">
-          <Icon icon="lucide:check-circle" className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>
-            {isAr
-              ? 'شكراً لك! تم إرسال رسالتك بنجاح. سأقوم بالرد عليك في أقرب وقت ممكن.'
-              : 'Thank you! Your message has been sent successfully. I will respond promptly.'}
-          </span>
+      {status.type === 'success' && (
+        <div className="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 flex items-start gap-3 text-sm text-emerald-800 dark:text-emerald-300 transition-all animate-in fade-in">
+          <Icon icon="lucide:check-circle" className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+          <div className="flex-1 font-medium leading-relaxed">{status.message}</div>
+          <button
+            type="button"
+            onClick={() => setStatus({ type: null, message: '' })}
+            className="text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-200 p-0.5 rounded cursor-pointer"
+            aria-label="Close"
+          >
+            <Icon icon="lucide:x" className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
+      {status.type === 'error' && (
+        <div className="p-4 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 flex items-start gap-3 text-sm text-rose-800 dark:text-rose-300 transition-all animate-in fade-in">
+          <Icon icon="lucide:alert-circle" className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
+          <div className="flex-1 font-medium leading-relaxed">{status.message}</div>
+          <button
+            type="button"
+            onClick={() => setStatus({ type: null, message: '' })}
+            className="text-rose-600 hover:text-rose-800 dark:text-rose-400 dark:hover:text-rose-200 p-0.5 rounded cursor-pointer"
+            aria-label="Close"
+          >
+            <Icon icon="lucide:x" className="w-4 h-4" />
+          </button>
         </div>
       )}
 
