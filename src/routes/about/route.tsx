@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react'
 import { Trans } from '@lingui/react/macro'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
+import { Button } from '@/components/ui/Button'
 import { getPortfolioConfig } from '@/config/portfolio'
 import { useLanguage } from '@/hooks/useLanguage'
 import { ExperienceTimeline } from './components/ExperienceTimeline'
@@ -25,15 +26,33 @@ function AboutPage() {
         transition={{ duration: 0.4 }}
         className="space-y-6"
       >
-        <div className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            <Trans>About & Experience</Trans>
-          </h1>
-          <p className="text-base text-zinc-600 dark:text-zinc-400">
-            {currentLocale === 'ar'
-              ? 'الخلفية الهندسية، سجل الخبرات المهنية في سوق العمل، والمصفوفة المهارية.'
-              : 'Background, commercial engineering track record, and technical competencies.'}
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="space-y-2">
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              <Trans>About & Experience</Trans>
+            </h1>
+            <p className="text-base text-zinc-600 dark:text-zinc-400">
+              {currentLocale === 'ar'
+                ? 'الخلفية الهندسية، سجل الخبرات المهنية في سوق العمل، والمصفوفة المهارية.'
+                : 'Background, commercial engineering track record, and technical competencies.'}
+            </p>
+          </div>
+
+          <div className="shrink-0">
+            <Button asChild className="gap-2 group shadow-sm" size="default" variant="outline">
+              <a
+                href="/Ebraheem_Althobary_CV.pdf"
+                target="_blank"
+                rel="noreferrer"
+                download="Ebraheem_Althobary_CV.pdf"
+              >
+                <Icon className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" icon="lucide:download" />
+                <span>
+                  <Trans>Download CV (PDF)</Trans>
+                </span>
+              </a>
+            </Button>
+          </div>
         </div>
 
         <div className="rounded-xl border border-zinc-200/80 bg-white/70 dark:border-zinc-800/80 dark:bg-zinc-900/40 p-6 space-y-4 shadow-sm">

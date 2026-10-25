@@ -86,6 +86,20 @@ function HomePage() {
             </Link>
           </Button>
 
+          <Button asChild variant="outline" size="default" className="gap-2 group">
+            <a
+              href="/Ebraheem_Althobary_CV.pdf"
+              target="_blank"
+              rel="noreferrer"
+              download="Ebraheem_Althobary_CV.pdf"
+            >
+              <Icon icon="lucide:download" className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
+              <span>
+                <Trans>Download CV (PDF)</Trans>
+              </span>
+            </a>
+          </Button>
+
           <Button asChild variant="ghost" size="default">
             <a
               href={personal.github}

@@ -9,15 +9,15 @@ msgstr ""
 
 #: src/components/Navbar.tsx:46
 #: src/components/Navbar.tsx:88
-#: src/routes/about/route.tsx:30
+#: src/routes/about/route.tsx:32
 msgid "About & Experience"
 msgstr "About & Experience"
 
-#: src/routes/index.tsx:334
+#: src/routes/index.tsx:348
 msgid "Academic & Analytical Foundation"
 msgstr "Academic & Analytical Foundation"
 
-#: src/routes/index.tsx:136
+#: src/routes/index.tsx:150
 msgid "Commercial Impact"
 msgstr "Commercial Impact"
 
@@ -27,15 +27,20 @@ msgid "Contact"
 msgstr "Contact"
 
 #: src/routes/contact/route.tsx:27
-#: src/routes/index.tsx:413
+#: src/routes/index.tsx:427
 msgid "Contact & Collaboration"
 msgstr "Contact & Collaboration"
+
+#: src/routes/about/route.tsx:51
+#: src/routes/index.tsx:98
+msgid "Download CV (PDF)"
+msgstr "Download CV (PDF)"
 
 #: src/routes/index.tsx:75
 msgid "Explore Projects"
 msgstr "Explore Projects"
 
-#: src/routes/index.tsx:242
+#: src/routes/index.tsx:256
 msgid "Foundational & Featured Projects"
 msgstr "Foundational & Featured Projects"
 
@@ -49,7 +54,7 @@ msgstr "Home"
 msgid "Projects"
 msgstr "Projects"
 
-#: src/routes/index.tsx:250
+#: src/routes/index.tsx:264
 #: src/routes/projects/index.tsx:79
 msgid "Projects & Code"
 msgstr "Projects & Code"
@@ -58,7 +63,7 @@ msgstr "Projects & Code"
 msgid "Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems."
 msgstr "Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems."
 
-#: src/routes/index.tsx:181
+#: src/routes/index.tsx:195
 msgid "Technical Competency Matrix"
 msgstr "Technical Competency Matrix"
 

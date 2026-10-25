@@ -9,15 +9,15 @@ msgstr ""
 
 #: src/components/Navbar.tsx:46
 #: src/components/Navbar.tsx:88
-#: src/routes/about/route.tsx:30
+#: src/routes/about/route.tsx:32
 msgid "About & Experience"
 msgstr "عني والخبرات"
 
-#: src/routes/index.tsx:334
+#: src/routes/index.tsx:348
 msgid "Academic & Analytical Foundation"
 msgstr "الأساس الأكاديمي والتحليلي"
 
-#: src/routes/index.tsx:136
+#: src/routes/index.tsx:150
 msgid "Commercial Impact"
 msgstr "الأثر التجاري والمهني"
 
@@ -27,15 +27,20 @@ msgid "Contact"
 msgstr "تواصل"
 
 #: src/routes/contact/route.tsx:27
-#: src/routes/index.tsx:413
+#: src/routes/index.tsx:427
 msgid "Contact & Collaboration"
 msgstr "تواصل وتعاون"
+
+#: src/routes/about/route.tsx:51
+#: src/routes/index.tsx:98
+msgid "Download CV (PDF)"
+msgstr "تحميل السيرة الذاتية (PDF)"
 
 #: src/routes/index.tsx:75
 msgid "Explore Projects"
 msgstr "استعراض المشاريع"
 
-#: src/routes/index.tsx:242
+#: src/routes/index.tsx:256
 msgid "Foundational & Featured Projects"
 msgstr "المشاريع الأساسية"
 
@@ -49,7 +54,7 @@ msgstr "الرئيسية"
 msgid "Projects"
 msgstr "المشاريع"
 
-#: src/routes/index.tsx:250
+#: src/routes/index.tsx:264
 #: src/routes/projects/index.tsx:79
 msgid "Projects & Code"
 msgstr "المشاريع والأكواد البرمجية"
@@ -58,7 +63,7 @@ msgstr "المشاريع والأكواد البرمجية"
 msgid "Software Engineer specializing in scalable React ecosystems, state architecture, and enterprise front-end systems."
 msgstr "مهندس برمجيات متخصص في تطوير الواجهات الأمامية وبناء أنظمة React المعمارية المتقدمة."
 
-#: src/routes/index.tsx:181
+#: src/routes/index.tsx:195
 msgid "Technical Competency Matrix"
 msgstr "المصفوفة التقنية"
 
