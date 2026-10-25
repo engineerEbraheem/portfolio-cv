@@ -144,7 +144,7 @@ export const portfolioAr: PortfolioData = {
       category: 'معمارية رائدة',
       technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS'],
       githubUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
-      demoUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
+      demoUrl: 'https://ebraheem-althobary.vercel.app/',
       highlights: [
         'أمان مطلق للأنواع البرمجية Type Safety عبر شجرة مسارات TanStack Router المولدة آلياً.',
         'إدارة مركزية للحالة تدعم مزامنة السمة والاتجاه اللغوي تلقائياً عبر Zustand.',

@@ -232,7 +232,7 @@ export const portfolioConfig: PortfolioData = {
       category: 'Flagship Architecture',
       technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS'],
       githubUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
-      demoUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
+      demoUrl: 'https://ebraheem-althobary.vercel.app/',
       highlights: [
         'Strict end-to-end type safety using TanStack Router with automated file-based route tree generation.',
         'Centralized state management with persistent theme switching and bidirectional language synchronization via Zustand.',
