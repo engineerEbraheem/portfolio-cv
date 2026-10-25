@@ -138,11 +138,11 @@ export const portfolioAr: PortfolioData = {
       title: 'البورتفوليو المعماري الاحترافي',
       subtitle: 'React 19, TanStack Router, Zustand & Radix UI',
       summary:
-        'منصة معرض أعمال متقدمة ومبنية بأحدث معايير React 19 و TypeScript، مع توجيه آمن عبر TanStack Router، وإدارة حالة بـ Zustand، ومكونات Radix UI المجردة، وتدويل كامل LTR/RTL بدون وقت تشغيل عبر LinguiJS.',
+        'منصة معرض أعمال متقدمة ومبنية بأحدث معايير React 19 و TypeScript، مع توجيه آمن عبر TanStack Router، وإدارة حالة بـ Zustand، ومكونات Radix UI المجردة، وتدويل كامل LTR/RTL بدون وقت تشغيل عبر LinguiJS، وتكامل بنية تواصل بدون خادم (Serverless) لاستقبال الرسائل عبر Formspree API والتحقق الصارم عبر Zod.',
       description:
         'بناء وهندسة منصة معرض أعمال وسيرة ذاتية هندسية احترافية باستخدام React 19 و TypeScript وتوجيه مسارات قائم على الملفات عبر TanStack Router، مع إدارة حالة عبر Zustand ومكونات Radix UI مع Tailwind CSS. تتميز بتصميم إنساني عالي الدقة، وتوافق ثنائي الاتجاه كامل (LTR/RTL) وخطوط محلية مستضافة ذاتياً.',
       category: 'معمارية رائدة',
-      technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS'],
+      technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS', 'Formspree'],
       githubUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
       demoUrl: 'https://ebraheem-althobary.vercel.app/',
       highlights: [
@@ -175,6 +175,11 @@ export const portfolioAr: PortfolioData = {
             decision: 'مكونات Radix UI المجردة مع Tailwind CSS',
             rationale:
               'تمنح توافقاً معيارياً كاملاً مع متطلبات الوصولية ARIA مع حرية تامة في تصميم المظهر دون التقيد بمكتبات مكونات مسبقة التصميم.',
+          },
+          {
+            decision: 'معمارية التواصل والخدمات بدون خادم (Serverless API)',
+            rationale:
+              'بناء بنية اتصال مباشرة بدون خادم عبر Formspree REST API، مع تعزيز الأداء بالأمان والتحقق المسبق عبر Zod و React Hook Form لمنع استهلاك الشبكة ببيانات غير مكتملة، دون الحاجة لتثبيت مكتبات خارجية ثقيلة.',
           },
         ],
         challengesSolved: [

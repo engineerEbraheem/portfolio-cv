@@ -226,11 +226,11 @@ export const portfolioConfig: PortfolioData = {
       title: 'Production-Grade Architectural Developer Portfolio',
       subtitle: 'React 19, TanStack Router, Zustand & Radix UI',
       summary:
-        'Production-grade developer portfolio engineered with Vite, React 19, and TypeScript. Implements type-safe file-based routing via TanStack Router, centralized state management with Zustand, headless Radix UI primitives with Tailwind CSS, and zero-runtime bidirectional localization (LTR/RTL) with Lingui.',
+        'Production-grade developer portfolio engineered with Vite, React 19, and TypeScript. Implements type-safe file-based routing via TanStack Router, centralized state management with Zustand, headless Radix UI primitives with Tailwind CSS, zero-runtime bidirectional localization (LTR/RTL) with Lingui, and a secure serverless contact pipeline integrated via Formspree API with Zod validation.',
       description:
         'Engineered a scalable, production-grade personal developer portfolio utilizing React 19, TypeScript, TanStack Router with file-based routing, Zustand state management, Radix UI headless primitives, and Tailwind CSS. Features clean anti-slop design aesthetics, full bidirectional localization (LTR/RTL) using compiled Lingui catalogs, and self-hosted local typography.',
       category: 'Flagship Architecture',
-      technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS'],
+      technologies: ['React 19', 'TypeScript', 'TanStack Router', 'Zustand', 'Tailwind CSS', 'Radix UI', 'LinguiJS', 'Formspree'],
       githubUrl: 'https://github.com/engineerEbraheem/portfolio-cv',
       demoUrl: 'https://ebraheem-althobary.vercel.app/',
       highlights: [
@@ -263,6 +263,11 @@ export const portfolioConfig: PortfolioData = {
             decision: 'Headless Radix UI Primitives with Tailwind CSS',
             rationale:
               'Provides unopinionated, fully accessible ARIA compliance and complete design token customization without bloated monolithic component libraries.',
+          },
+          {
+            decision: 'Serverless Communication & Form Architecture',
+            rationale:
+              'Engineered a resilient contact pipeline interfacing directly with Formspree REST endpoints. Enforced client-side schema validation using Zod and React Hook Form to guarantee payload sanitization and eliminate unnecessary network requests, all while avoiding heavy third-party SDKs.',
           },
         ],
         challengesSolved: [
